@@ -1,3 +1,4 @@
+import org.mockito.MockitoSugar.when
 import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.BeforeAndAfter
 
@@ -13,6 +14,7 @@ class TranslatorTest extends AnyFunSpec with BeforeAndAfter {
     it("Should return an empty string when passed an empty string (both singleChar and String version)") {
       val inputStr = ""
       val expectedStr = ""
+
 
       assert(translator.convertStringToMorse(inputStr) == expectedStr)
     }
@@ -85,13 +87,6 @@ class TranslatorTest extends AnyFunSpec with BeforeAndAfter {
 
       assert(translator.convertMorseToString(inputStr) == expectedStr)
     }
-
-//    it("Should be able to convert back from morse code when there are spaces in words") {
-//      val inputStr = ".- / .-"
-//      val expectedStr = "A A"
-//
-//      assert(translator.convertMorseToString(inputStr) == expectedStr)
-//    }
 
     it("Should throw an exception if there are characters present that are not valid morse code") {
       val inputStr = ".--..- .-   .- .-"

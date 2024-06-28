@@ -7,4 +7,10 @@ lazy val root = (project in file("."))
     name := "MorseCodeTranslator"
   )
 
-libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.11" % Test
+//libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.11" % Test
+
+
+libraryDependencies ++= Seq(
+  "org.mockito" %% "mockito-scala-scalatest" % "1.16.37",
+  "org.scalatest" %% "scalatest" % "3.2.10" % Test
+)

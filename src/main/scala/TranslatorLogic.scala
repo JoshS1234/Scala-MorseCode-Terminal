@@ -1,7 +1,9 @@
 object TranslatorLogic {
 
   def run:Unit  = {
-    val translator : Translator = new Translator()
+
+    val translator = new Translator();
+    val translatorService = new TranslatorService(translator);
 
     UserInteraction.welcomeUser
     var continueTranslating = true
@@ -15,11 +17,11 @@ object TranslatorLogic {
         while (!isValid) {
           val strToConvert = UserInteraction.textToMorseCode
           try {
-            val convertedCode = translator.convertStringToMorse(strToConvert)
+            val convertedCode = translatorService.convertStringToMorse(strToConvert)
             isValid = true
             UserInteraction.announceMorseCode(strToConvert, convertedCode)
           } catch {
-            case (e: Exception) => println("This is not valid more code, have another go!")
+            case (e: Exception) => println("This is not valid Morse code, have another go!")
           }
         }
 
@@ -28,7 +30,7 @@ object TranslatorLogic {
       } else if (translationDirection==2) {
         //From Morse code
         val codeToConvert = UserInteraction.morseCodeToText
-        val convertedText = translator.convertMorseToString(codeToConvert)
+        val convertedText = translatorService.convertMorseToString(codeToConvert)
         UserInteraction.announceText(codeToConvert, convertedText)
 
         continueTranslating = UserInteraction.goAgain
@@ -38,6 +40,8 @@ object TranslatorLogic {
       }
     }
   }
+
+
 
 
 
